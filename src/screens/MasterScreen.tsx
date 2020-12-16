@@ -1,9 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Button, Text, TextInput, TouchableOpacity, View, Animated, StyleSheet } from 'react-native';
+import { Button, Text, TextInput, TouchableOpacity, View, Animated, StyleSheet, ScrollView } from 'react-native';
 import { SafeAreaView, StackActions } from 'react-navigation';
 import { DrawerActions, NavigationDrawerProp } from 'react-navigation-drawer';
 import { FeatureButton } from '@src/components/FeatureButton';
 import { OverlayFeatureButton } from '@src/components/OverlayFeatureButton';
+import { LayoutConstants } from '@src/constants';
+import { CustomScrollView } from '@src/components/CustomScrollView';
 
 /**
  * https://reactnavigation.org/docs/4.x/typescript
@@ -17,8 +19,15 @@ const MasterScreen = (props: Props) => {
     const [y, setY] = useState(0);
 
     useEffect(() => {
+        if (y > 0) {
+            Animated.timing(transitionState, {
+                toValue: 1,
+                useNativeDriver: true,
+                duration: 500
+            }).start();
+        }
 
-    }, []);
+    }, [y]);
 
     const onMenuPress = () => {
         console.log(props.navigation.state);// { key: 'Home', routeName: 'Home' }
@@ -35,7 +44,7 @@ const MasterScreen = (props: Props) => {
 
     return (
         <SafeAreaView style={{ flex: 1 }}>
-            <View style={{ height: 50, backgroundColor: 'red', flexDirection: 'row', alignItems: 'center' }}>
+            <View style={{ height: LayoutConstants.HEADER_HEIGHT, backgroundColor: 'red', flexDirection: 'row', alignItems: 'center' }}>
 
                 <TouchableOpacity style={{ backgroundColor: 'yellow' }}
                     onPress={() => onMenuPress()}>
@@ -43,12 +52,15 @@ const MasterScreen = (props: Props) => {
                 </TouchableOpacity>
             </View>
             <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                <FeatureButton onPress={onButtonPress} />
-            </View>
-            <View style={StyleSheet.absoluteFill}>
-                <OverlayFeatureButton y={y} />
+
+                <View style={StyleSheet.absoluteFill}>
+                    <OverlayFeatureButton y={y} transitionState={transitionState} />
+                </View>
+
+                <CustomScrollView onPress={onButtonPress} transitionState={transitionState} />
 
             </View>
+
         </SafeAreaView>
 
     );

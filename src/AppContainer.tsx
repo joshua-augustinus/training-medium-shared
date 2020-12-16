@@ -1,28 +1,28 @@
 import { createAppContainer } from 'react-navigation';
 import { createDrawerNavigator } from 'react-navigation-drawer';
 import { SideMenu } from './components/SideMenu';
-import { ActivityScreen } from './screens/ActivityScreen';
 import { MasterScreen } from './screens/MasterScreen';
 import { createStackNavigator } from 'react-navigation-stack';
 
+const stackConfig = {
+    defaultNavigationOptions:
+    {
+        headerShown: false
+    },
+
+}
 
 
 const InnerStack = createStackNavigator({
     Stack1: {
         screen: MasterScreen
     }
-})
+}, stackConfig)
 
 const RootStack = createDrawerNavigator({
     Home: {
         screen: InnerStack
     },
-    SecondScreen: {
-        screen: InnerStack
-    },
-    Activity: {
-        screen: ActivityScreen
-    }
 }, {
     contentComponent: SideMenu,
     backBehavior: "initialRoute"

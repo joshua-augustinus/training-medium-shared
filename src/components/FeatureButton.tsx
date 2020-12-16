@@ -22,7 +22,7 @@ const FeatureButton = (props: Props) => {
     return (
 
 
-        <TouchableOpacity onPress={onPress} ref={cardRef} >
+        <TouchableOpacity onPress={onPress} ref={cardRef} style={{ zIndex: 1000 }} >
             <Animated.Image style={{ ...styles.image, width: width, height: FEATURE_BUTTON_HEIGHT }} resizeMode='cover' source={require('../assets/sample.jpg')} />
 
         </TouchableOpacity>
