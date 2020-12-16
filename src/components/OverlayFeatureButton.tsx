@@ -19,8 +19,8 @@ const OverlayFeatureButton = (props: Props) => {
     }]
 
     const opacity = props.transitionState.interpolate({
-        inputRange: [0, 0.1, 1],
-        outputRange: [0, 1, 1]
+        inputRange: [0, 0.01, 0.99, 1],
+        outputRange: [0, 1, 1, 0]
     })
 
 

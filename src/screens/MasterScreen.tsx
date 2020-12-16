@@ -6,6 +6,7 @@ import { FeatureButton } from '@src/components/FeatureButton';
 import { OverlayFeatureButton } from '@src/components/OverlayFeatureButton';
 import { LayoutConstants } from '@src/constants';
 import { CustomScrollView } from '@src/components/CustomScrollView';
+import { ActivityScreen } from './ActivityScreen';
 
 /**
  * https://reactnavigation.org/docs/4.x/typescript
@@ -52,7 +53,9 @@ const MasterScreen = (props: Props) => {
                 </TouchableOpacity>
             </View>
             <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-
+                <View style={StyleSheet.absoluteFill}>
+                    <ActivityScreen transitionState={transitionState} />
+                </View>
                 <View style={StyleSheet.absoluteFill}>
                     <OverlayFeatureButton y={y} transitionState={transitionState} />
                 </View>
