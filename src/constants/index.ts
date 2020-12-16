@@ -3,7 +3,7 @@ const LayoutConstants = {
     ARTICLE_HEADER_HEIGHT: 200,
     FEATURE_BUTTON_SCALE: 0.9,
     FEATURE_BORDER_RADIUS: 10,
-    FEATURE_BUTTON_HEIGHT: 150
+    FEATURE_BUTTON_HEIGHT: 145
 }
 
 export { LayoutConstants }

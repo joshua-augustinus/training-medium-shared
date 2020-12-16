@@ -2,6 +2,7 @@ import { LayoutConstants } from "@src/constants";
 import React, { useEffect, useRef, useState } from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, useWindowDimensions, View } from "react-native";
 import Animated from "react-native-reanimated";
+import { FeatureText } from "./FeatureText";
 
 interface Props {
     pressInfo: any,
@@ -54,7 +55,7 @@ const OverlayFeatureButton = (props: Props) => {
 
             <Animated.Image style={{ ...styles.image, width: width, height: height, borderRadius: borderRadius }} resizeMode='cover' source={{ uri: props.pressInfo.imageUrl }} />
             <View style={styles.contentContainer}>
-                <Text allowFontScaling={false} style={styles.card_title}>{props.pressInfo.title.toUpperCase()}</Text>
+                <FeatureText title={props.pressInfo.title} backgroundColor={props.pressInfo.backgroundColor} />
             </View>
         </Animated.View>
     )
@@ -65,9 +66,6 @@ export { OverlayFeatureButton }
 const styles = StyleSheet.create({
 
     image: {
-        width: '100%',
-        height: '100%'
-
     },
     contentContainer: {
         ...StyleSheet.absoluteFillObject,

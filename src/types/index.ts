@@ -5,8 +5,13 @@ export interface NavigationOptions {
     headerTitle: string
 }
 
-export interface PressInfo {
+export interface PressInfo extends ExploreCardInfo {
     y: number,
+
+}
+
+export interface ExploreCardInfo {
     imageUrl: string,
-    title: string
+    title: string,
+    backgroundColor: string
 }

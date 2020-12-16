@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Button, Text, TextInput, TouchableOpacity, View, StyleSheet, ScrollView, Image, useWindowDimensions } from 'react-native';
 import { LayoutConstants } from '@src/constants';
 import { PressInfo } from '@src/types';
+import { FeatureText } from './FeatureText';
 
 /**
  * https://reactnavigation.org/docs/4.x/typescript
@@ -24,7 +25,7 @@ const ArticleHeader = (props: Props) => {
                 source={{ uri: props.pressInfo.imageUrl }} />
             <View style={StyleSheet.absoluteFill}>
                 <View style={styles.contentContainer}>
-                    <Text allowFontScaling={false} style={styles.card_title}>{props.pressInfo.title.toUpperCase()}</Text>
+                    <FeatureText title={props.pressInfo.title} backgroundColor={props.pressInfo.backgroundColor} />
 
                 </View>
             </View>
