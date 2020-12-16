@@ -7,6 +7,7 @@ import { LayoutConstants } from '@src/constants';
 import { ButtonList } from '@src/components/ButtonList';
 import { ActivityScreen } from './ActivityScreen';
 import Animated, { Easing } from 'react-native-reanimated';
+import { Header } from '@src/components/Header';
 
 /**
  * https://reactnavigation.org/docs/4.x/typescript
@@ -72,13 +73,7 @@ const MasterScreen = (props: Props) => {
 
     return (
         <SafeAreaView style={{ flex: 1 }}>
-            <View style={{ height: LayoutConstants.HEADER_HEIGHT, backgroundColor: 'red', flexDirection: 'row', alignItems: 'center' }}>
-
-                <TouchableOpacity style={{ backgroundColor: 'yellow' }}
-                    onPress={() => onMenuPress()}>
-                    <Text>Menu</Text>
-                </TouchableOpacity>
-            </View>
+            <Header />
             <View style={{ flex: 1 }} onLayout={onLayout}>
                 <View style={StyleSheet.absoluteFill}>
                     <ActivityScreen pressInfo={pressInfo} transitionState={transitionState} onBackPressed={onBackPressed} />
