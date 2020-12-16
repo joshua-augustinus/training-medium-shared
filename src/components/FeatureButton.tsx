@@ -12,7 +12,7 @@ interface Props {
 }
 
 
-const FeatureButton = (props: Props) => {
+const FeatureButton = React.memo((props: Props) => {
     const width = useWindowDimensions().width;
     const cardRef = useRef(null);
     const transform = [{ scale: LayoutConstants.FEATURE_BUTTON_SCALE }];
@@ -37,7 +37,7 @@ const FeatureButton = (props: Props) => {
             </View>
         </TouchableOpacity>
     )
-}
+});
 
 export { FeatureButton }
 

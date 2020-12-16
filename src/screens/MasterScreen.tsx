@@ -54,11 +54,11 @@ const MasterScreen = (props: Props) => {
 
     }
 
-    const onButtonPress = (layout) => {
+    const onButtonPress = React.useCallback((layout) => {
         console.log("layout", layout);
         setPressInfo(layout);
 
-    }
+    }, []);
 
     const onLayout = (e) => {
         const layout = { x: e.nativeEvent.layout.x, y: e.nativeEvent.layout.y };
