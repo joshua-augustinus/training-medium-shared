@@ -1,10 +1,12 @@
 import { LayoutConstants } from "@src/constants";
 import React, { useEffect, useRef, useState } from "react";
-import { Animated, StyleSheet, TouchableOpacity, useWindowDimensions } from "react-native";
+import { StyleSheet, TouchableOpacity, useWindowDimensions } from "react-native";
+import Animated from "react-native-reanimated";
 
 interface Props {
     y: number,
-    transitionState: Animated.Value
+    transitionState: Animated.Value<number>,
+    yOffset: number
 }
 
 export const FEATURE_BUTTON_HEIGHT = 150;
@@ -14,13 +16,13 @@ const OverlayFeatureButton = (props: Props) => {
     const transform = [{
         translateY: props.transitionState.interpolate({
             inputRange: [0, 1],
-            outputRange: [props.y - LayoutConstants.HEADER_HEIGHT, 0]
+            outputRange: [props.y - props.yOffset, 0]
         })
     }]
 
     const opacity = props.transitionState.interpolate({
         inputRange: [0, 0.01, 0.99, 1],
-        outputRange: [0, 1, 1, 0]
+        outputRange: [0, 1, 1, 1]
     })
 
 

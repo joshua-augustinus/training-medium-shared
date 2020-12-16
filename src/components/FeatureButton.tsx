@@ -1,6 +1,5 @@
 import React, { useRef, useState } from "react";
-import { StyleSheet, TouchableOpacity, useWindowDimensions } from "react-native";
-import Animated from "react-native-reanimated";
+import { Image, StyleSheet, TouchableOpacity, useWindowDimensions } from "react-native";
 
 interface Props {
     onPress: (layout: any) => void
@@ -23,7 +22,7 @@ const FeatureButton = (props: Props) => {
 
 
         <TouchableOpacity onPress={onPress} ref={cardRef} style={{ zIndex: 1000 }} >
-            <Animated.Image style={{ ...styles.image, width: width, height: FEATURE_BUTTON_HEIGHT }} resizeMode='cover' source={require('../assets/sample.jpg')} />
+            <Image style={{ ...styles.image, width: width, height: FEATURE_BUTTON_HEIGHT }} resizeMode='cover' source={require('../assets/sample.jpg')} />
 
         </TouchableOpacity>
     )

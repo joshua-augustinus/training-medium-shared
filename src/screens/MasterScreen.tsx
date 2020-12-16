@@ -1,12 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Button, Text, TextInput, TouchableOpacity, View, Animated, StyleSheet, ScrollView } from 'react-native';
-import { SafeAreaView, StackActions } from 'react-navigation';
+import { Text, TouchableOpacity, View, StyleSheet } from 'react-native';
+import { SafeAreaView } from 'react-navigation';
 import { DrawerActions, NavigationDrawerProp } from 'react-navigation-drawer';
-import { FeatureButton } from '@src/components/FeatureButton';
 import { OverlayFeatureButton } from '@src/components/OverlayFeatureButton';
 import { LayoutConstants } from '@src/constants';
 import { CustomScrollView } from '@src/components/CustomScrollView';
 import { ActivityScreen } from './ActivityScreen';
+import Animated, { Easing } from 'react-native-reanimated';
 
 /**
  * https://reactnavigation.org/docs/4.x/typescript
@@ -18,17 +18,19 @@ type Props = {
 const MasterScreen = (props: Props) => {
     const transitionState = useRef(new Animated.Value(0)).current;
     const [y, setY] = useState(0);
+    const contentOffset = useRef(0);
 
     useEffect(() => {
         if (y > 0) {
             Animated.timing(transitionState, {
                 toValue: 1,
-                useNativeDriver: true,
+                easing: Easing.inOut(Easing.ease),
                 duration: 500
             }).start();
         }
 
     }, [y]);
+
 
     const onMenuPress = () => {
         console.log(props.navigation.state);// { key: 'Home', routeName: 'Home' }
@@ -42,6 +44,11 @@ const MasterScreen = (props: Props) => {
 
     }
 
+    const onLayout = (e) => {
+        const layout = { x: e.nativeEvent.layout.x, y: e.nativeEvent.layout.y };
+        console.log("Layout", layout);
+        contentOffset.current = layout.y;
+    }
 
     return (
         <SafeAreaView style={{ flex: 1 }}>
@@ -52,12 +59,12 @@ const MasterScreen = (props: Props) => {
                     <Text>Menu</Text>
                 </TouchableOpacity>
             </View>
-            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }} onLayout={onLayout}>
                 <View style={StyleSheet.absoluteFill}>
                     <ActivityScreen transitionState={transitionState} />
                 </View>
                 <View style={StyleSheet.absoluteFill}>
-                    <OverlayFeatureButton y={y} transitionState={transitionState} />
+                    <OverlayFeatureButton y={y} transitionState={transitionState} yOffset={contentOffset.current} />
                 </View>
 
                 <CustomScrollView onPress={onButtonPress} transitionState={transitionState} />

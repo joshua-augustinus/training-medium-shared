@@ -1,6 +1,6 @@
 import React from 'react';
-import { Animated, ScrollView } from 'react-native';
 import { FeatureButton } from '@src/components/FeatureButton';
+import Animated from 'react-native-reanimated';
 
 
 /**
@@ -8,7 +8,12 @@ import { FeatureButton } from '@src/components/FeatureButton';
  */
 type Props = {
     onPress: (layout) => void,
-    transitionState: Animated.Value
+    transitionState: Animated.Value<number>
+}
+
+let data = [];
+for (let i = 0; i < 15; i++) {
+    data.push({ index: i });
 }
 
 const CustomScrollView = (props: Props) => {
@@ -22,8 +27,10 @@ const CustomScrollView = (props: Props) => {
     return (
 
         <Animated.ScrollView keyboardShouldPersistTaps='always' style={{ opacity: opacity }}>
-            <FeatureButton onPress={props.onPress} />
-            <FeatureButton onPress={props.onPress} />
+            {data.map((item) => {
+                return <FeatureButton key={item.index.toString()} onPress={props.onPress} />
+
+            })}
 
         </Animated.ScrollView>
 
