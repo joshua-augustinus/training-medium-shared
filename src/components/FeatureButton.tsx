@@ -1,10 +1,12 @@
 import { LayoutConstants } from "@src/constants";
+import { PressInfo } from "@src/types";
 import React, { useRef, useState } from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, useWindowDimensions, View } from "react-native";
 
 interface Props {
-    onPress: (layout: any) => void,
-    imageUrl: string
+    onPress: (layout: PressInfo) => void,
+    imageUrl: string,
+    title: string
 }
 
 
@@ -15,7 +17,7 @@ const FeatureButton = (props: Props) => {
 
     const onPress = React.useCallback(() => {
         cardRef.current.measure((x, y, width, height, pageX, pageY) => {
-            const layout = { x: pageX, y: pageY, width, height, imageUrl: props.imageUrl };
+            const layout = { x: pageX, y: pageY, width, height, imageUrl: props.imageUrl, title: props.title };
             props.onPress(layout);
         });
     }, []);
@@ -29,7 +31,7 @@ const FeatureButton = (props: Props) => {
             <Image style={{ ...styles.image, width: width, height: LayoutConstants.FEATURE_BUTTON_HEIGHT, transform: transform }}
                 resizeMode='cover' source={{ uri: props.imageUrl }} />
             <View style={styles.contentContainer}>
-                <Text style={styles.text}>Placeholder</Text>
+                <Text allowFontScaling={false} style={styles.card_title}>{props.title.toUpperCase()}</Text>
             </View>
         </TouchableOpacity>
     )
@@ -52,10 +54,18 @@ const styles = StyleSheet.create({
     contentContainer: {
         ...StyleSheet.absoluteFillObject,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'flex-start',
+        padding: 40
     },
-    text: {
-        color: 'white',
-        fontSize: 16
-    }
+    card_title: {
+        lineHeight: 24,
+        fontWeight: '400',
+        color: '#FFFFFF',
+        textAlignVertical: 'center',
+        fontFamily: 'BarlowCondensed-SemiBold',
+        textShadowRadius: 3,
+        textShadowColor: 'rgba(0,0,0,0.3)',
+        textShadowOffset: { width: 2, height: 2 },
+        fontSize: 24
+    },
 })

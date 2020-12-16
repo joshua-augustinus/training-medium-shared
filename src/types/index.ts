@@ -7,5 +7,6 @@ export interface NavigationOptions {
 
 export interface PressInfo {
     y: number,
-    imageUrl: string
+    imageUrl: string,
+    title: string
 }
