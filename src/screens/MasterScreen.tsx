@@ -66,6 +66,10 @@ const MasterScreen = (props: Props) => {
         contentOffset.current = layout.y;
     }
 
+    const onBackPressed = () => {
+        setTransitionString('reversing');
+    }
+
     return (
         <SafeAreaView style={{ flex: 1 }}>
             <View style={{ height: LayoutConstants.HEADER_HEIGHT, backgroundColor: 'red', flexDirection: 'row', alignItems: 'center' }}>
@@ -77,7 +81,7 @@ const MasterScreen = (props: Props) => {
             </View>
             <View style={{ flex: 1 }} onLayout={onLayout}>
                 <View style={StyleSheet.absoluteFill}>
-                    <ActivityScreen pressInfo={pressInfo} transitionState={transitionState} />
+                    <ActivityScreen pressInfo={pressInfo} transitionState={transitionState} onBackPressed={onBackPressed} />
                 </View>
                 {transitionString !== 'finished' &&
                     <View style={StyleSheet.absoluteFill}>

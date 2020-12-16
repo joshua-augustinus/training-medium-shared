@@ -23,7 +23,7 @@ const ButtonList = (props: Props) => {
     })
 
     const translateX = props.transitionState.interpolate({
-        inputRange: [0, 0.99, 1],
+        inputRange: [0, 0.90, 1],
         outputRange: [0, 0, -width]
     })
 
