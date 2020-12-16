@@ -22,16 +22,19 @@ const OverlayFeatureButton = (props: Props) => {
 
     const opacity = props.transitionState.interpolate({
         inputRange: [0, 0.01, 0.99, 1],
-        outputRange: [0, 1, 1, 1]
+        outputRange: [0, 1, 1, 0]
     })
 
-
+    const height = props.transitionState.interpolate({
+        inputRange: [0, 1],
+        outputRange: [FEATURE_BUTTON_HEIGHT, LayoutConstants.ARTICLE_HEADER_HEIGHT]
+    })
 
     return (
 
         <Animated.View style={{ transform: transform, opacity: opacity }}>
 
-            <Animated.Image style={{ ...styles.image, width: width, height: FEATURE_BUTTON_HEIGHT }} resizeMode='cover' source={require('../assets/sample.jpg')} />
+            <Animated.Image style={{ ...styles.image, width: width, height: height }} resizeMode='cover' source={require('../assets/sample.jpg')} />
 
         </Animated.View>
     )

@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { Image, StyleSheet, TouchableOpacity, useWindowDimensions } from "react-native";
+import { Image, StyleSheet, Text, TouchableOpacity, useWindowDimensions, View } from "react-native";
 
 interface Props {
     onPress: (layout: any) => void
@@ -23,7 +23,9 @@ const FeatureButton = (props: Props) => {
 
         <TouchableOpacity onPress={onPress} ref={cardRef} style={{ zIndex: 1000 }} >
             <Image style={{ ...styles.image, width: width, height: FEATURE_BUTTON_HEIGHT }} resizeMode='cover' source={require('../assets/sample.jpg')} />
-
+            <View style={StyleSheet.absoluteFill}>
+                <Text>Placeholder</Text>
+            </View>
         </TouchableOpacity>
     )
 }
