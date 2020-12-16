@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react';
-import { Button, Text, TextInput, TouchableOpacity, View, BackHandler } from 'react-native';
+import React, { useEffect, useRef, useState } from 'react';
+import { Button, Text, TextInput, TouchableOpacity, View, Animated, StyleSheet } from 'react-native';
 import { SafeAreaView, StackActions } from 'react-navigation';
 import { DrawerActions, NavigationDrawerProp } from 'react-navigation-drawer';
 import { FeatureButton } from '@src/components/FeatureButton';
+import { OverlayFeatureButton } from '@src/components/OverlayFeatureButton';
 
 /**
  * https://reactnavigation.org/docs/4.x/typescript
@@ -12,6 +13,8 @@ type Props = {
 }
 
 const MasterScreen = (props: Props) => {
+    const transitionState = useRef(new Animated.Value(0)).current;
+    const [y, setY] = useState(0);
 
     useEffect(() => {
 
@@ -23,15 +26,10 @@ const MasterScreen = (props: Props) => {
         props.navigation.dispatch(DrawerActions.toggleDrawer());
     }
 
-    const onButtonPress = () => {
-        const pushAction = StackActions.push({
-            routeName: 'Stack1',
-            params: {
-                myUserId: 9,
-            },
-        });
+    const onButtonPress = (layout) => {
+        console.log("layout", layout);
+        setY(layout.y);
 
-        props.navigation.dispatch(pushAction);
     }
 
 
@@ -45,7 +43,11 @@ const MasterScreen = (props: Props) => {
                 </TouchableOpacity>
             </View>
             <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                <FeatureButton />
+                <FeatureButton onPress={onButtonPress} />
+            </View>
+            <View style={StyleSheet.absoluteFill}>
+                <OverlayFeatureButton y={y} />
+
             </View>
         </SafeAreaView>
 
