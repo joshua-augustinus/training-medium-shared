@@ -23,6 +23,16 @@ const bgColors = [
     '#00bfd8',
 ]
 
+const iconMap = {};
+iconMap['#00bfd8'] = require('../assets/icons/iconPrimary.png');
+iconMap['#f2384f'] = require('../assets/icons/iconRed.png');
+iconMap['#ff7d37'] = require('../assets/icons/iconOrange.png');
+iconMap['#f2ba0f'] = require('../assets/icons/iconYellow.png');
+iconMap['#54b554'] = require('../assets/icons/iconGreen.png');
+iconMap['#4abaca'] = require('../assets/icons/iconPrimary.png');
+iconMap['#407fe8'] = require('../assets/icons/iconBlue.png');
+
+
 let data = [];
 for (let i = 0; i <= 13; i++) {
 
@@ -30,7 +40,8 @@ for (let i = 0; i <= 13; i++) {
         index: i,
         imageUrl: MOBILE_CONFIG_URL + (i + 1) + '.jpg',
         title: titles[i],
-        backgroundColor: bgColors[i]
+        backgroundColor: bgColors[i],
+        icon: iconMap[bgColors[i]]
     });
 }
 

@@ -8,7 +8,8 @@ interface Props {
     onPress: (layout: PressInfo) => void,
     imageUrl: string,
     title: string,
-    backgroundColor: string
+    backgroundColor: string,
+    icon: any
 }
 
 
@@ -18,7 +19,7 @@ const FeatureButton = React.memo((props: Props) => {
     const transform = [{ scale: LayoutConstants.FEATURE_BUTTON_SCALE }];
     const onPress = React.useCallback(() => {
         cardRef.current.measure((x, y, width, height, pageX, pageY) => {
-            const layout = { x: pageX, y: pageY, width, height, imageUrl: props.imageUrl, title: props.title, backgroundColor: props.backgroundColor };
+            const layout = { x: pageX, y: pageY, width, height, imageUrl: props.imageUrl, title: props.title, backgroundColor: props.backgroundColor, icon: props.icon };
             props.onPress(layout);
         });
     }, []);

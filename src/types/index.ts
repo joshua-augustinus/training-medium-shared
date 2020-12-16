@@ -13,5 +13,6 @@ export interface PressInfo extends ExploreCardInfo {
 export interface ExploreCardInfo {
     imageUrl: string,
     title: string,
-    backgroundColor: string
+    backgroundColor: string,
+    icon: any
 }

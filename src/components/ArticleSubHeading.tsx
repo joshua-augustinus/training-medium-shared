@@ -2,7 +2,7 @@ import React from "react";
 import { View, Image, Text, Button, StyleSheet } from "react-native";
 
 interface Props {
-    iconUrl: string,
+    icon: any,
     categoryColor: string
 }
 const ArticleSubHeading = (props: Props) => {
@@ -11,7 +11,7 @@ const ArticleSubHeading = (props: Props) => {
             {/* Bottom details section */}
             <View style={styles.card_heading}>
                 {/* Category icon */}
-                <Image source={{ uri: props.iconUrl }} style={[styles.card_icon, styles.md_card_icon, { borderColor: props.categoryColor }]} />
+                <Image source={props.icon} style={[styles.card_icon, styles.md_card_icon, { borderColor: props.categoryColor }]} />
                 <View style={styles.card_heading_text}>
                     {/* Feed title */}
                     <View style={styles.card_title_view}>

@@ -3,6 +3,7 @@ import { Button, Text, TextInput, TouchableOpacity, View, StyleSheet, ScrollView
 import { LayoutConstants } from '@src/constants';
 import { PressInfo } from '@src/types';
 import { FeatureText } from './FeatureText';
+import { ArticleSubHeading } from './ArticleSubHeading';
 
 /**
  * https://reactnavigation.org/docs/4.x/typescript
@@ -20,16 +21,20 @@ const ArticleHeader = (props: Props) => {
 
     return (
         <View>
-            <Image style={{ width: width, height: LayoutConstants.ARTICLE_HEADER_HEIGHT }}
-                resizeMode='cover'
-                source={{ uri: props.pressInfo.imageUrl }} />
-            <View style={StyleSheet.absoluteFill}>
-                <View style={styles.contentContainer}>
-                    <FeatureText title={props.pressInfo.title} backgroundColor={props.pressInfo.backgroundColor} timeOpacity={1} />
+            <View>
+                <Image style={{ width: width, height: LayoutConstants.ARTICLE_HEADER_HEIGHT }}
+                    resizeMode='cover'
+                    source={{ uri: props.pressInfo.imageUrl }} />
+                <View style={StyleSheet.absoluteFill}>
+                    <View style={styles.contentContainer}>
+                        <FeatureText title={props.pressInfo.title} backgroundColor={props.pressInfo.backgroundColor} timeOpacity={1} />
 
+                    </View>
                 </View>
             </View>
+            <ArticleSubHeading categoryColor={props.pressInfo.backgroundColor} icon={props.pressInfo.icon} />
         </View>
+
 
 
 
