@@ -27,8 +27,8 @@ const FeatureButton = (props: Props) => {
     return (
 
 
-        <TouchableOpacity onPress={onPress} ref={cardRef} style={{ zIndex: 1000 }} >
-            <Image style={{ ...styles.image, width: width, height: LayoutConstants.FEATURE_BUTTON_HEIGHT, transform: transform }}
+        <TouchableOpacity onPress={onPress} ref={cardRef} style={{ zIndex: 1000, transform: transform }} >
+            <Image style={{ ...styles.image, width: width, height: LayoutConstants.FEATURE_BUTTON_HEIGHT }}
                 resizeMode='cover' source={{ uri: props.imageUrl }} />
             <View style={styles.contentContainer}>
                 <Text allowFontScaling={false} style={styles.card_title}>{props.title.toUpperCase()}</Text>
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
         ...StyleSheet.absoluteFillObject,
         justifyContent: 'center',
         alignItems: 'flex-start',
-        padding: 40
+        padding: 20
     },
     card_title: {
         lineHeight: 24,

@@ -1,6 +1,6 @@
 import { LayoutConstants } from "@src/constants";
 import React, { useEffect, useRef, useState } from "react";
-import { Image, StyleSheet, TouchableOpacity, useWindowDimensions } from "react-native";
+import { Image, StyleSheet, Text, TouchableOpacity, useWindowDimensions, View } from "react-native";
 import Animated from "react-native-reanimated";
 
 interface Props {
@@ -50,10 +50,12 @@ const OverlayFeatureButton = (props: Props) => {
 
     return (
 
-        <Animated.View style={{ transform: transform, opacity: opacity, width: width, height: height }}>
+        <Animated.View style={{ transform: transform, opacity: opacity }}>
 
-            <Image style={{ ...styles.image }} resizeMode='cover' source={{ uri: props.pressInfo.imageUrl }} />
-
+            <Animated.Image style={{ ...styles.image, width: width, height: height }} resizeMode='cover' source={{ uri: props.pressInfo.imageUrl }} />
+            <View style={styles.contentContainer}>
+                <Text allowFontScaling={false} style={styles.card_title}>{props.pressInfo.title.toUpperCase()}</Text>
+            </View>
         </Animated.View>
     )
 }
@@ -66,5 +68,22 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '100%'
 
-    }
+    },
+    contentContainer: {
+        ...StyleSheet.absoluteFillObject,
+        justifyContent: 'center',
+        alignItems: 'flex-start',
+        padding: 20
+    },
+    card_title: {
+        lineHeight: 24,
+        fontWeight: '400',
+        color: '#FFFFFF',
+        textAlignVertical: 'center',
+        fontFamily: 'BarlowCondensed-SemiBold',
+        textShadowRadius: 3,
+        textShadowColor: 'rgba(0,0,0,0.3)',
+        textShadowOffset: { width: 2, height: 2 },
+        fontSize: 24
+    },
 })

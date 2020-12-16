@@ -42,8 +42,7 @@ export { ArticleHeader }
 
 const styles = StyleSheet.create({
     card_title: {
-        fontSize: 34,
-        lineHeight: 36,
+        lineHeight: 24,
         fontWeight: '400',
         color: '#FFFFFF',
         textAlignVertical: 'center',
@@ -51,11 +50,12 @@ const styles = StyleSheet.create({
         textShadowRadius: 3,
         textShadowColor: 'rgba(0,0,0,0.3)',
         textShadowOffset: { width: 2, height: 2 },
+        fontSize: 24
     },
     contentContainer: {
         flex: 1,
         alignItems: 'flex-start',
         justifyContent: 'center',
-        padding: 15
+        padding: 20
     }
 })
