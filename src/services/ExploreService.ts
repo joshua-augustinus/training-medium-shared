@@ -1,7 +1,7 @@
 const MOBILE_CONFIG_URL = 'https://hellodriven-mobile-config.azurewebsites.net/assets/';
 
 let data = [];
-for (let i = 0; i < 13; i++) {
+for (let i = 0; i <= 13; i++) {
 
     data.push({
         index: i,

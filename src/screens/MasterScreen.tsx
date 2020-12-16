@@ -4,7 +4,7 @@ import { SafeAreaView } from 'react-navigation';
 import { DrawerActions, NavigationDrawerProp } from 'react-navigation-drawer';
 import { OverlayFeatureButton } from '@src/components/OverlayFeatureButton';
 import { LayoutConstants } from '@src/constants';
-import { CustomScrollView } from '@src/components/CustomScrollView';
+import { ButtonList } from '@src/components/ButtonList';
 import { ActivityScreen } from './ActivityScreen';
 import Animated, { Easing } from 'react-native-reanimated';
 
@@ -84,7 +84,7 @@ const MasterScreen = (props: Props) => {
                         <OverlayFeatureButton pressInfo={pressInfo} transitionState={transitionState} yOffset={contentOffset.current} />
                     </View>}
                 {transitionString !== 'finished' &&
-                    <CustomScrollView onPress={onButtonPress} transitionState={transitionState} />}
+                    <ButtonList onPress={onButtonPress} transitionState={transitionState} />}
 
             </View>
 

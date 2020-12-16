@@ -13,7 +13,7 @@ type Props = {
 
 let data = ExploreService.getExploreData();
 
-const CustomScrollView = (props: Props) => {
+const ButtonList = (props: Props) => {
 
 
     const opacity = props.transitionState.interpolate({
@@ -39,4 +39,4 @@ const CustomScrollView = (props: Props) => {
 }
 
 
-export { CustomScrollView }
+export { ButtonList }
