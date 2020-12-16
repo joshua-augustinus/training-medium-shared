@@ -15,11 +15,13 @@ type Props = {
     navigation: NavigationDrawerProp<{ userId: string, routeName: string }>;
 }
 
+type TransitionString = 'default' | 'finished' | 'reversing'
+
 const MasterScreen = (props: Props) => {
     const transitionState = useRef(new Animated.Value(0)).current;
     const [y, setY] = useState(0);
     const contentOffset = useRef(0);
-    const [transitionFinished, setTransitionFinished] = useState(false);
+    const [transitionString, setTransitionString] = useState<TransitionString>('default');
 
     useEffect(() => {
         if (y > 0) {
@@ -28,17 +30,28 @@ const MasterScreen = (props: Props) => {
                 easing: Easing.inOut(Easing.ease),
                 duration: 500
             }).start(() => {
-                setTransitionFinished(true);
+                setTransitionString('finished');
             });
         }
 
     }, [y]);
 
+    useEffect(() => {
+        if (transitionString === 'reversing') {
+            Animated.timing(transitionState, {
+                toValue: 0,
+                easing: Easing.inOut(Easing.ease),
+                duration: 500
+            }).start(() => {
+                //setTransitionString('default');
+            });
+        }
+
+    }, [transitionString])
 
     const onMenuPress = () => {
-        console.log(props.navigation.state);// { key: 'Home', routeName: 'Home' }
-        console.log("Menu pressed");
-        props.navigation.dispatch(DrawerActions.toggleDrawer());
+        setTransitionString('reversing');
+
     }
 
     const onButtonPress = (layout) => {
@@ -62,14 +75,15 @@ const MasterScreen = (props: Props) => {
                     <Text>Menu</Text>
                 </TouchableOpacity>
             </View>
-            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }} onLayout={onLayout}>
+            <View style={{ flex: 1 }} onLayout={onLayout}>
                 <View style={StyleSheet.absoluteFill}>
                     <ActivityScreen transitionState={transitionState} />
                 </View>
-                {!transitionFinished && <View style={StyleSheet.absoluteFill}>
-                    <OverlayFeatureButton y={y} transitionState={transitionState} yOffset={contentOffset.current} />
-                </View>}
-                {!transitionFinished &&
+                {transitionString !== 'finished' &&
+                    <View style={StyleSheet.absoluteFill}>
+                        <OverlayFeatureButton y={y} transitionState={transitionState} yOffset={contentOffset.current} />
+                    </View>}
+                {transitionString !== 'finished' &&
                     <CustomScrollView onPress={onButtonPress} transitionState={transitionState} />}
 
             </View>
