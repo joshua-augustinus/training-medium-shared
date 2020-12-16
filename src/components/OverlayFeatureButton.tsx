@@ -1,22 +1,27 @@
 import { LayoutConstants } from "@src/constants";
 import React, { useEffect, useRef, useState } from "react";
-import { StyleSheet, TouchableOpacity, useWindowDimensions } from "react-native";
+import { Image, StyleSheet, TouchableOpacity, useWindowDimensions } from "react-native";
 import Animated from "react-native-reanimated";
 
 interface Props {
-    y: number,
+    pressInfo: any,
     transitionState: Animated.Value<number>,
     yOffset: number
 }
 
-export const FEATURE_BUTTON_HEIGHT = 150;
 
 const OverlayFeatureButton = (props: Props) => {
     const width = useWindowDimensions().width;
+    const y = props.pressInfo?.y;
+
+    if (!y) {
+        return null;
+    }
+
     const transform = [{
         translateY: props.transitionState.interpolate({
             inputRange: [0, 1],
-            outputRange: [props.y - props.yOffset, 0]
+            outputRange: [y - props.yOffset, 0]
         })
     },
     {
@@ -34,7 +39,7 @@ const OverlayFeatureButton = (props: Props) => {
 
     const height = props.transitionState.interpolate({
         inputRange: [0, 1],
-        outputRange: [FEATURE_BUTTON_HEIGHT, LayoutConstants.ARTICLE_HEADER_HEIGHT]
+        outputRange: [LayoutConstants.FEATURE_BUTTON_HEIGHT, LayoutConstants.ARTICLE_HEADER_HEIGHT]
     })
 
     const borderRadius = props.transitionState.interpolate({
@@ -45,9 +50,9 @@ const OverlayFeatureButton = (props: Props) => {
 
     return (
 
-        <Animated.View style={{ transform: transform, opacity: opacity }}>
+        <Animated.View style={{ transform: transform, opacity: opacity, width: width, height: height }}>
 
-            <Animated.Image style={{ ...styles.image, width: width, height: height }} resizeMode='cover' source={require('../assets/sample.jpg')} />
+            <Image style={{ ...styles.image }} resizeMode='cover' source={{ uri: props.pressInfo.imageUrl }} />
 
         </Animated.View>
     )
@@ -59,6 +64,7 @@ const styles = StyleSheet.create({
 
     image: {
         width: '100%',
+        height: '100%'
 
     }
 })

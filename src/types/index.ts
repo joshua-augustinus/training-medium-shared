@@ -4,3 +4,8 @@ export interface NavigationOptions {
     headerRight: () => React.ReactNode,
     headerTitle: string
 }
+
+export interface PressInfo {
+    y: number,
+    imageUrl: string
+}

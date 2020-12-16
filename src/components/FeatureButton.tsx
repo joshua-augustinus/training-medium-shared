@@ -3,10 +3,10 @@ import React, { useRef, useState } from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, useWindowDimensions, View } from "react-native";
 
 interface Props {
-    onPress: (layout: any) => void
+    onPress: (layout: any) => void,
+    imageUrl: string
 }
 
-export const FEATURE_BUTTON_HEIGHT = 150;
 
 const FeatureButton = (props: Props) => {
     const width = useWindowDimensions().width;
@@ -15,16 +15,19 @@ const FeatureButton = (props: Props) => {
 
     const onPress = React.useCallback(() => {
         cardRef.current.measure((x, y, width, height, pageX, pageY) => {
-            const layout = { x: pageX, y: pageY, width, height };
+            const layout = { x: pageX, y: pageY, width, height, imageUrl: props.imageUrl };
             props.onPress(layout);
         });
     }, []);
+
+    console.log(props.imageUrl);
 
     return (
 
 
         <TouchableOpacity onPress={onPress} ref={cardRef} style={{ zIndex: 1000 }} >
-            <Image style={{ ...styles.image, width: width, height: FEATURE_BUTTON_HEIGHT, transform: transform }} resizeMode='cover' source={require('../assets/sample.jpg')} />
+            <Image style={{ ...styles.image, width: width, height: LayoutConstants.FEATURE_BUTTON_HEIGHT, transform: transform }}
+                resizeMode='cover' source={{ uri: props.imageUrl }} />
             <View style={styles.contentContainer}>
                 <Text style={styles.text}>Placeholder</Text>
             </View>

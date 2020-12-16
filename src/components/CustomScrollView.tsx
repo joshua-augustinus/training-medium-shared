@@ -1,7 +1,7 @@
 import React from 'react';
 import { FeatureButton } from '@src/components/FeatureButton';
 import Animated from 'react-native-reanimated';
-
+import * as ExploreService from '@src/services/ExploreService';
 
 /**
  * https://reactnavigation.org/docs/4.x/typescript
@@ -11,10 +11,7 @@ type Props = {
     transitionState: Animated.Value<number>
 }
 
-let data = [];
-for (let i = 0; i < 15; i++) {
-    data.push({ index: i });
-}
+let data = ExploreService.getExploreData();
 
 const CustomScrollView = (props: Props) => {
 
@@ -28,7 +25,7 @@ const CustomScrollView = (props: Props) => {
 
         <Animated.ScrollView keyboardShouldPersistTaps='always' style={{ opacity: opacity }}>
             {data.map((item) => {
-                return <FeatureButton key={item.index.toString()} onPress={props.onPress} />
+                return <FeatureButton imageUrl={item.imageUrl} key={item.index.toString()} onPress={props.onPress} />
 
             })}
 

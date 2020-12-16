@@ -19,12 +19,12 @@ type TransitionString = 'default' | 'finished' | 'reversing'
 
 const MasterScreen = (props: Props) => {
     const transitionState = useRef(new Animated.Value(0)).current;
-    const [y, setY] = useState(0);
+    const [pressInfo, setPressInfo] = useState(null);
     const contentOffset = useRef(0);
     const [transitionString, setTransitionString] = useState<TransitionString>('default');
 
     useEffect(() => {
-        if (y > 0) {
+        if (pressInfo !== null) {
             Animated.timing(transitionState, {
                 toValue: 1,
                 easing: Easing.inOut(Easing.ease),
@@ -34,7 +34,7 @@ const MasterScreen = (props: Props) => {
             });
         }
 
-    }, [y]);
+    }, [pressInfo]);
 
     useEffect(() => {
         if (transitionString === 'reversing') {
@@ -56,7 +56,7 @@ const MasterScreen = (props: Props) => {
 
     const onButtonPress = (layout) => {
         console.log("layout", layout);
-        setY(layout.y);
+        setPressInfo(layout);
 
     }
 
@@ -77,11 +77,11 @@ const MasterScreen = (props: Props) => {
             </View>
             <View style={{ flex: 1 }} onLayout={onLayout}>
                 <View style={StyleSheet.absoluteFill}>
-                    <ActivityScreen transitionState={transitionState} />
+                    <ActivityScreen pressInfo={pressInfo} transitionState={transitionState} />
                 </View>
                 {transitionString !== 'finished' &&
                     <View style={StyleSheet.absoluteFill}>
-                        <OverlayFeatureButton y={y} transitionState={transitionState} yOffset={contentOffset.current} />
+                        <OverlayFeatureButton pressInfo={pressInfo} transitionState={transitionState} yOffset={contentOffset.current} />
                     </View>}
                 {transitionString !== 'finished' &&
                     <CustomScrollView onPress={onButtonPress} transitionState={transitionState} />}
