@@ -17,7 +17,7 @@ const ArticleSubHeading = (props: Props) => {
                     <View style={styles.card_title_view}>
                         {/* Activty by text */}
                         <Text allowFontScaling={false} style={styles.article_by}>
-                            Article by
+                            Article by&nbsp;
                         </Text>
                         <Text allowFontScaling={false} style={[styles.article_by_bold]}>
                             Driven

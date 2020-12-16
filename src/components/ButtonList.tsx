@@ -31,7 +31,7 @@ const ButtonList = (props: Props) => {
 
     return (
 
-        <Animated.ScrollView keyboardShouldPersistTaps='always' style={{ opacity: opacity, transform: transform }}>
+        <Animated.ScrollView style={{ opacity: opacity, transform: transform }}>
             {data.map((item) => {
                 return <FeatureButton icon={item.icon} backgroundColor={item.backgroundColor} title={item.title} imageUrl={item.imageUrl} key={item.index.toString()} onPress={props.onPress} />
 

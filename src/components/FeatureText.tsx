@@ -35,6 +35,7 @@ const styles = StyleSheet.create({
     contentContainer: {
         justifyContent: 'center',
         alignItems: 'flex-start',
+        paddingTop: 10
     },
     card_title: {
         lineHeight: 24,
