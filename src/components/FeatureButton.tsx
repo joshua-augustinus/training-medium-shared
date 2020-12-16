@@ -1,3 +1,4 @@
+import { LayoutConstants } from "@src/constants";
 import React, { useRef, useState } from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, useWindowDimensions, View } from "react-native";
 
@@ -10,6 +11,7 @@ export const FEATURE_BUTTON_HEIGHT = 150;
 const FeatureButton = (props: Props) => {
     const width = useWindowDimensions().width;
     const cardRef = useRef(null);
+    const transform = [{ scale: LayoutConstants.FEATURE_BUTTON_SCALE }];
 
     const onPress = React.useCallback(() => {
         cardRef.current.measure((x, y, width, height, pageX, pageY) => {
@@ -22,9 +24,9 @@ const FeatureButton = (props: Props) => {
 
 
         <TouchableOpacity onPress={onPress} ref={cardRef} style={{ zIndex: 1000 }} >
-            <Image style={{ ...styles.image, width: width, height: FEATURE_BUTTON_HEIGHT }} resizeMode='cover' source={require('../assets/sample.jpg')} />
-            <View style={StyleSheet.absoluteFill}>
-                <Text>Placeholder</Text>
+            <Image style={{ ...styles.image, width: width, height: FEATURE_BUTTON_HEIGHT, transform: transform }} resizeMode='cover' source={require('../assets/sample.jpg')} />
+            <View style={styles.contentContainer}>
+                <Text style={styles.text}>Placeholder</Text>
             </View>
         </TouchableOpacity>
     )
@@ -42,7 +44,15 @@ const styles = StyleSheet.create({
         zIndex: 1
     },
     image: {
-        width: '100%',
-
+        borderRadius: LayoutConstants.FEATURE_BORDER_RADIUS
+    },
+    contentContainer: {
+        ...StyleSheet.absoluteFillObject,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    text: {
+        color: 'white',
+        fontSize: 16
     }
 })

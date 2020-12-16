@@ -19,6 +19,7 @@ const MasterScreen = (props: Props) => {
     const transitionState = useRef(new Animated.Value(0)).current;
     const [y, setY] = useState(0);
     const contentOffset = useRef(0);
+    const [transitionFinished, setTransitionFinished] = useState(false);
 
     useEffect(() => {
         if (y > 0) {
@@ -26,7 +27,9 @@ const MasterScreen = (props: Props) => {
                 toValue: 1,
                 easing: Easing.inOut(Easing.ease),
                 duration: 500
-            }).start();
+            }).start(() => {
+                setTransitionFinished(true);
+            });
         }
 
     }, [y]);
@@ -63,11 +66,11 @@ const MasterScreen = (props: Props) => {
                 <View style={StyleSheet.absoluteFill}>
                     <ActivityScreen transitionState={transitionState} />
                 </View>
-                <View style={StyleSheet.absoluteFill}>
+                {!transitionFinished && <View style={StyleSheet.absoluteFill}>
                     <OverlayFeatureButton y={y} transitionState={transitionState} yOffset={contentOffset.current} />
-                </View>
-
-                <CustomScrollView onPress={onButtonPress} transitionState={transitionState} />
+                </View>}
+                {!transitionFinished &&
+                    <CustomScrollView onPress={onButtonPress} transitionState={transitionState} />}
 
             </View>
 

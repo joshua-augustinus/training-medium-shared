@@ -18,7 +18,14 @@ const OverlayFeatureButton = (props: Props) => {
             inputRange: [0, 1],
             outputRange: [props.y - props.yOffset, 0]
         })
-    }]
+    },
+    {
+        scale: props.transitionState.interpolate({
+            inputRange: [0, 1],
+            outputRange: [LayoutConstants.FEATURE_BUTTON_SCALE, 1]
+        })
+    }
+    ]
 
     const opacity = props.transitionState.interpolate({
         inputRange: [0, 0.01, 0.99, 1],
@@ -29,6 +36,12 @@ const OverlayFeatureButton = (props: Props) => {
         inputRange: [0, 1],
         outputRange: [FEATURE_BUTTON_HEIGHT, LayoutConstants.ARTICLE_HEADER_HEIGHT]
     })
+
+    const borderRadius = props.transitionState.interpolate({
+        inputRange: [0, 1],
+        outputRange: [LayoutConstants.FEATURE_BORDER_RADIUS, 0]
+    })
+
 
     return (
 
@@ -43,14 +56,7 @@ const OverlayFeatureButton = (props: Props) => {
 export { OverlayFeatureButton }
 
 const styles = StyleSheet.create({
-    container: {
-        ...StyleSheet.absoluteFillObject,
-        width: '100%',
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderRadius: 10,
-        zIndex: 1
-    },
+
     image: {
         width: '100%',
 
