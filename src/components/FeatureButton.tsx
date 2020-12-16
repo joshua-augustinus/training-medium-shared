@@ -16,7 +16,6 @@ const FeatureButton = (props: Props) => {
     const width = useWindowDimensions().width;
     const cardRef = useRef(null);
     const transform = [{ scale: LayoutConstants.FEATURE_BUTTON_SCALE }];
-    const categoryBGColor = props.backgroundColor;
     const onPress = React.useCallback(() => {
         cardRef.current.measure((x, y, width, height, pageX, pageY) => {
             const layout = { x: pageX, y: pageY, width, height, imageUrl: props.imageUrl, title: props.title, backgroundColor: props.backgroundColor };

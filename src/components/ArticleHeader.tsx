@@ -25,7 +25,7 @@ const ArticleHeader = (props: Props) => {
                 source={{ uri: props.pressInfo.imageUrl }} />
             <View style={StyleSheet.absoluteFill}>
                 <View style={styles.contentContainer}>
-                    <FeatureText title={props.pressInfo.title} backgroundColor={props.pressInfo.backgroundColor} />
+                    <FeatureText title={props.pressInfo.title} backgroundColor={props.pressInfo.backgroundColor} timeOpacity={1} />
 
                 </View>
             </View>

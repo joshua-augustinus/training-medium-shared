@@ -1,15 +1,17 @@
 import React, { useRef, useState } from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, useWindowDimensions, View } from "react-native";
+import Animated from "react-native-reanimated";
 
 interface Props {
     title: string,
-    backgroundColor: string
+    backgroundColor: string,
+    timeOpacity?: number
 }
 
 
 const FeatureText = (props: Props) => {
 
-
+    const timeOpacity = props.timeOpacity === undefined ? 0 : props.timeOpacity;
 
     return (
 
@@ -20,6 +22,8 @@ const FeatureText = (props: Props) => {
                 #Category
                     </Text>
             <Text allowFontScaling={false} style={styles.card_title}>{props.title.toUpperCase()}</Text>
+            <Text allowFontScaling={false} style={{ ...styles.card_time, opacity: timeOpacity }}>2 min read</Text>
+
         </View>
 
     )
@@ -31,7 +35,6 @@ const styles = StyleSheet.create({
     contentContainer: {
         justifyContent: 'center',
         alignItems: 'flex-start',
-        marginBottom: 10
     },
     card_title: {
         lineHeight: 24,
@@ -55,5 +58,14 @@ const styles = StyleSheet.create({
         textAlignVertical: 'center',
         backgroundColor: '#00BFD8',
         marginBottom: 7
+    }, card_time: {
+        marginLeft: 1,
+        fontSize: 12,
+        lineHeight: 24,
+        color: '#FFFFFF',
+        fontFamily: 'Roboto-Regular',
+        textShadowRadius: 1,
+        textShadowColor: 'rgba(0,0,0,0.5)',
+        textShadowOffset: { width: 1, height: 1 },
     },
 })
