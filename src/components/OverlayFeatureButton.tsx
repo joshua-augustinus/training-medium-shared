@@ -52,7 +52,7 @@ const OverlayFeatureButton = (props: Props) => {
 
         <Animated.View style={{ transform: transform, opacity: opacity }}>
 
-            <Animated.Image style={{ ...styles.image, width: width, height: height }} resizeMode='cover' source={{ uri: props.pressInfo.imageUrl }} />
+            <Animated.Image style={{ ...styles.image, width: width, height: height, borderRadius: borderRadius }} resizeMode='cover' source={{ uri: props.pressInfo.imageUrl }} />
             <View style={styles.contentContainer}>
                 <Text allowFontScaling={false} style={styles.card_title}>{props.pressInfo.title.toUpperCase()}</Text>
             </View>
