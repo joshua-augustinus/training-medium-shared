@@ -83,8 +83,7 @@ const MasterScreen = (props: Props) => {
                     <View style={StyleSheet.absoluteFill}>
                         <OverlayFeatureButton pressInfo={pressInfo} transitionState={transitionState} yOffset={contentOffset.current} />
                     </View>}
-                {transitionString !== 'finished' &&
-                    <ButtonList onPress={onButtonPress} transitionState={transitionState} />}
+                <ButtonList onPress={onButtonPress} transitionState={transitionState} />
 
             </View>
 
