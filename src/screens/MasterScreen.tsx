@@ -28,7 +28,7 @@ const MasterScreen = (props: Props) => {
         if (pressInfo !== null) {
             Animated.timing(transitionState, {
                 toValue: 1,
-                easing: Easing.inOut(Easing.ease),
+                easing: Easing.inOut(Easing.quad),
                 duration: 500
             }).start(() => {
                 setTransitionString('finished');
