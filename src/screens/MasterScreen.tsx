@@ -85,7 +85,7 @@ const MasterScreen = (props: Props) => {
 
     const height = ReAnimated.interpolate(reAnimatedState, {
         inputRange: [0, 1],
-        outputRange: [214, 160]
+        outputRange: [40 + 214, 160]
     })
 
     const borderRadius = ReAnimated.interpolate(reAnimatedState, {
@@ -99,11 +99,15 @@ const MasterScreen = (props: Props) => {
             <View style={{ flex: 1 }} onLayout={onLayout}>
                 <Animated.View style={{ transform: transform, alignItems: 'center' }}>
                     <Pressable onPress={onPressed}>
+                        <ReAnimated.View style={{ height: height, overflow: 'hidden', borderRadius: borderRadius }}>
 
-                        <ReAnimated.Image source={{ uri: 'https://hellodriven.github.io/mobile-static/v1/images/1007.jpg' }} style={{ height: height, width: width, borderRadius: borderRadius }} />
+                            <ReAnimated.Image source={{ uri: 'https://hellodriven.github.io/mobile-static/v1/images/1007.jpg' }} style={{ height: 214, width: width }} />
+                            <Text style={{ height: 40, backgroundColor: 'red' }}>Article By Driven</Text>
+                        </ReAnimated.View>
 
                     </Pressable>
                 </Animated.View>
+
 
 
 
